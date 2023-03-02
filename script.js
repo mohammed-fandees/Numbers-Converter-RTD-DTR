@@ -29,6 +29,7 @@ class Convert {
   constructor(rNumber, iNumber) {
     this.roman = rNumber;
     this.int = iNumber;
+    this.history = JSON.parse(localStorage.getItem('history')) || [];
   }
 
   romanToInt() {
@@ -62,6 +63,14 @@ class Convert {
       res.appendChild(calc);
 
       document.querySelector(".history").appendChild(res);
+
+      const data = {
+        from: this.roman,
+        to: result
+      }
+
+      this.history.push(data)
+      localStorage.setItem('history', JSON.stringify(this.history));
     }
   }
 
@@ -91,6 +100,14 @@ class Convert {
       res.appendChild(calc);
 
       document.querySelector(".history").appendChild(res);
+
+      const data = {
+        from: document.querySelector('#num').value,
+        to: result
+      }
+
+      this.history.push(data)
+      localStorage.setItem('history', JSON.stringify(this.history));
     } else console.log("Invalid Valu");
   }
 }
@@ -105,3 +122,33 @@ document.querySelector("button").addEventListener("click", function (el) {
     new Convert(num, num).intToRoman();
   }
 });
+
+
+class LocalStorage {
+  getData() {
+    if(localStorage.getItem('history')) {
+      const history = JSON.parse(localStorage.getItem('history'));
+
+      history.forEach(function(object) {
+        let userInput = create("div");
+        userInput.className = "user-input";
+        userInput.appendChild(document.createTextNode(object.from));
+  
+        let calc = create("div");
+        calc.className = "calc";
+        calc.appendChild(document.createTextNode(object.to));
+  
+        let res = create("div");
+        res.className = "res";
+        res.appendChild(userInput);
+        res.appendChild(calc);
+  
+        document.querySelector(".history").appendChild(res);
+      });
+    }
+  }
+}
+
+onload = _ => {
+  new LocalStorage().getData();
+}
