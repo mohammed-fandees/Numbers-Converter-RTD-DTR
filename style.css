@@ -66,6 +66,12 @@ form input {
   font-weight: bold;
 }
 
+form .buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+}
+
 form button {
   border-radius: 8px;
   outline: 0;
@@ -76,6 +82,13 @@ form button {
   align-items: center;
   font-weight: bold;
   font-size: 15px;
+  background: #074b5c;
+  color: #fff;
+  cursor: pointer;
+}
+
+form #clear {
+  background: #f00;
 }
 
 .history {

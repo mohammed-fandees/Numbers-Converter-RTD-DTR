@@ -46,8 +46,12 @@ class Convert {
       prev = curr;
     }
 
-    if (prev === undefined) {
-      console.log("Invalid Valu");
+    if (prev === undefined || result === 0) {
+      Swal.fire(
+        'Invalid Value!',
+        'This is not roman number.',
+        'question'
+      )
     } else {
       let userInput = create("div");
       userInput.className = "user-input";
@@ -108,7 +112,18 @@ class Convert {
 
       this.history.push(data)
       localStorage.setItem('history', JSON.stringify(this.history));
-    } else console.log("Invalid Valu");
+    } else {
+      Swal.fire(
+        'Invalid Value!',
+        'You must write digits only to convert it to roman.',
+        'question'
+      )
+    }
+  }
+
+  clearHistory() {
+    document.querySelectorAll('.history .res').forEach(res => res.remove());
+    localStorage.removeItem('history');
   }
 }
 
@@ -121,6 +136,12 @@ document.querySelector("button").addEventListener("click", function (el) {
   } else {
     new Convert(num, num).intToRoman();
   }
+  document.querySelector("#num").focus();
+});
+
+document.querySelector('#clear').addEventListener('click', function(el) {
+  el.preventDefault();
+  new Convert().clearHistory();
 });
 
 
