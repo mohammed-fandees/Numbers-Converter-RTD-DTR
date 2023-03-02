@@ -2,6 +2,16 @@
   box-sizing: border-box;
 }
 
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #074b5c;
+  border-radius: 50px;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -96,4 +106,35 @@ form button {
   font-weight: 600;
   font-size: 18px;
   color: #074b5c;
+  position: relative;
+  overflow: auto;
+  gap: 20px;
+  min-height: 41px !important;
+}
+
+.tutorial {
+  background: #fff;
+  padding: 20px;
+  border-radius: 0 0 8px 8px;
+  width: 300px;
+  position: relative;
+  top: -12px;
+  z-index: 500;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  align-items: center;
+  border-top: 2px solid #074b5c;
+  color: #074b5c;
+  font-weight: bold
+}
+
+.tutorial h4 {
+  margin: 0;
+}
+
+.tutorial .text {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
 }
